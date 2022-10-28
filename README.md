@@ -3,6 +3,15 @@
 ## Encountered issues
 fast refresh not working in NextJs - fix: https://stackoverflow.com/a/70947588/11034352
 
+## Relevant links
+
+- [Assignment](https://github.com/Applifting/fullstack-exercise/blob/master/assignment.md)
+- [Prototype](https://www.figma.com/proto/VagZOrr3TjTAxGCpCUTSrO/Applifting-%7C-Full-Stack-Cvi%C4%8Den%C3%AD?node-id=2%3A3&viewport=148%2C245%2C0.12103988230228424&scaling=min-zoom)
+- [Screens](https://www.figma.com/file/VagZOrr3TjTAxGCpCUTSrO/Applifting-|-Full-Stack-Cvičení)
+- [OpenAPI specification](https://github.com/Applifting/fullstack-exercise/blob/master/api.yml)
+- [JSON schema specification for WebSocket API](https://github.com/Applifting/fullstack-exercise/blob/master/ws.json)
+- [Deployed Backend](https://fullstack.exercise.applifting.cz) `https://fullstack.exercise.applifting.cz`
+
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
