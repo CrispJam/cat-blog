@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getArticleIds } from '../../lib/api';
 
 export default function Article() {
   return (
@@ -9,4 +10,12 @@ export default function Article() {
       </h2>
     </>
   );
+}
+
+export async function getStaticPaths() {
+  const paths = getArticleIds();
+  return {
+    paths,
+    fallback: false,
+  };
 }
