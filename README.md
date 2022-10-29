@@ -22,11 +22,19 @@ there seems to be no way to retrieve all uploaded images, so I'll save all of th
 ```
 
 ## Encountered issues
-fast refresh not working in NextJs - fix: https://stackoverflow.com/a/70947588/11034352
+1. fast refresh not working in NextJs
 
-component mounts twice - fix: turn off react strict mode
+    fix: https://stackoverflow.com/a/70947588/11034352
 
-https://stackoverflow.com/a/71835700/11034352
+2. component mounts twice
+
+    fix: turn off react strict mode
+    https://stackoverflow.com/a/71835700/11034352
+
+3. 'React' refers to a UMD global, but the current file is a module
+
+    fix: https://stackoverflow.com/a/65539274/11034352
+
 ## Relevant links
 
 - [Assignment](https://github.com/Applifting/fullstack-exercise/blob/master/assignment.md)

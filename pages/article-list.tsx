@@ -1,15 +1,10 @@
 import Link from "next/link"
-import axios from "axios"
 import { ArticleType } from "../lib/types";
+import { getArticles } from "../lib/api";
 
 type ArticleListProp = {
   articles: Array<ArticleType>;
 }
-
-const axiosInstance = axios.create({
-  baseURL: 'https://fullstack.exercise.applifting.cz',
-  headers: { 'X-API-KEY': '950a7a91-9435-4179-b89f-3944c2f128f8' }
-});
 
 export default function ArticleList({articles}: ArticleListProp) {
   const articleComponents = articles.map(article =>
@@ -17,7 +12,7 @@ export default function ArticleList({articles}: ArticleListProp) {
       <h2 >{article.title}</h2>
       <p>{article.perex}</p>
       <Link href="/">Read more</Link>
-    </div>  
+    </div>
   )
   return (
     <>
@@ -29,10 +24,10 @@ export default function ArticleList({articles}: ArticleListProp) {
 }
 
 export async function getStaticProps() {
-  const response = await axiosInstance.get('/articles');
+  const articles = await getArticles();
   return {
     props: {
-      articles: response.data.items,
+      articles,
     },
   }
 }
