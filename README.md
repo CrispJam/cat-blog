@@ -8,6 +8,19 @@ apiKey: `950a7a91-9435-4179-b89f-3944c2f128f8`
 
 name: `crispjam`
 
+###  Uploaded images
+there seems to be no way to retrieve all uploaded images, so I'll save all of their ids here
+```json
+  {
+    "imageId": "e7ae6fa9-c22e-497e-b659-d20e50af978f",
+    "name": "kitten.jpg"
+  }
+  {
+    "imageId": "aefdb73f-034f-4072-a7db-bcc327f7ab56",
+    "name": "cathouse.jpg"
+  }
+```
+
 ## Encountered issues
 fast refresh not working in NextJs - fix: https://stackoverflow.com/a/70947588/11034352
 
