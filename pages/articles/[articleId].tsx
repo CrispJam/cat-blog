@@ -13,7 +13,7 @@ export default function ArticleView({articleDetail}: ArticleDetailProp) {
       <h1>{articleDetail.title}</h1>
       <ReactMarkdown>{articleDetail.content}</ReactMarkdown>
       <h2>
-        <Link href="/">Back to article list</Link>
+        <Link href="/article-list">Back to article list</Link>
       </h2>
     </>
   );
