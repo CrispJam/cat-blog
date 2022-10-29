@@ -2,12 +2,18 @@ import Link from 'next/link';
 import { getArticleDetail, getArticleIds } from '../../lib/api';
 import { ArticleDetail } from '../../lib/types';
 import ReactMarkdown from 'react-markdown';
+import { ParsedUrlQuery } from 'querystring';
+import { GetStaticProps } from 'next';
 
-interface ArticleDetailProp {
+interface Props {
   articleDetail: ArticleDetail;
 }
 
-export default function ArticleView({articleDetail}: ArticleDetailProp) {
+interface Params extends ParsedUrlQuery {
+  articleId: string;
+}
+
+export default function ArticleView({articleDetail}: Props) {
   return (
     <>
       <h1>{articleDetail.title}</h1>
@@ -34,11 +40,10 @@ export async function getStaticPaths() {
   };
 }
 // 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
+  const params = context.params!  // ! is a non-null assertion 
   const articleDetail = await getArticleDetail(params.articleId);
   return {
-    props: {
-      articleDetail,
-    }
+    props: { articleDetail }
   }
 }

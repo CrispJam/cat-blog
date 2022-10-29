@@ -35,6 +35,10 @@ there seems to be no way to retrieve all uploaded images, so I'll save all of th
 
     fix: https://stackoverflow.com/a/65539274/11034352
 
+4. Binding element 'params' implicitly has an 'any' type.
+
+    fix: https://github.com/vercel/next.js/discussions/16522#discussioncomment-130070
+
 ## Relevant links
 
 - [Assignment](https://github.com/Applifting/fullstack-exercise/blob/master/assignment.md)

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Article } from "./types";
+import { Article, ArticleDetail } from "./types";
 
 const axiosInstance = axios.create({
   baseURL: 'https://fullstack.exercise.applifting.cz',
@@ -17,7 +17,7 @@ export async function getArticleIds(): Promise<Array<string>> {
   return articles.map(article => article.articleId);
 }
 
-export async function getArticleDetail(articleId: string) {
+export async function getArticleDetail(articleId: string): Promise<ArticleDetail> {
   const response = await axiosInstance.get(`/articles/${articleId}`);
   return response.data;
 }
