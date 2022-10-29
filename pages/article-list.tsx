@@ -1,15 +1,16 @@
 import Link from "next/link"
-import { ArticleType } from "../lib/types";
+import { Article } from "../lib/types";
 import { getArticles } from "../lib/api";
 
-type ArticleListProp = {
-  articles: Array<ArticleType>;
+interface ArticleListProp {
+  articles: Array<Article>;
 }
 
 export default function ArticleList({articles}: ArticleListProp) {
   const articleComponents = articles.map(article =>
     <div key={article.title}>
       <h2 >{article.title}</h2>
+      <h2>{article.articleId}</h2>
       <p>{article.perex}</p>
       <Link href="/">Read more</Link>
     </div>

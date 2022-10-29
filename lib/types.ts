@@ -1,4 +1,4 @@
-export type ArticleType = {
+export interface Article {
   articleId: string;
   title: string;
   perex: string;
@@ -7,7 +7,7 @@ export type ArticleType = {
   lastUpdatedAt: string;
 }
 
-export type Comment = {
+export interface Comment {
   commendId: string;
   articleId: string;
   author: string;
@@ -16,13 +16,7 @@ export type Comment = {
   score: number;
 }
 
-export type ArticleDetail = {
-  articleId: string;
-  title: string;
-  perex: string;
-  imageId: string;
-  createdAt: string;
-  lastUpdatedAt: string;
+export interface ArticleDetail extends Article {
   content: string;
   comments: Array<Comment>
 }
