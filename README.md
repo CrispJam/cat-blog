@@ -1,5 +1,13 @@
 # Cat blog
 
+## My tenant info
+
+tenantId: `104e3259-6e9b-441a-84b2-e245878c14f8`
+
+apiKey: `950a7a91-9435-4179-b89f-3944c2f128f8`
+
+name: `crispjam`
+
 ## Encountered issues
 fast refresh not working in NextJs - fix: https://stackoverflow.com/a/70947588/11034352
 
