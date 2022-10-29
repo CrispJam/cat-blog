@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getArticleDetail, getArticleIds } from '../../lib/api';
 import { ArticleDetail } from '../../lib/types';
+import ReactMarkdown from 'react-markdown';
 
 interface ArticleDetailProp {
   articleDetail: ArticleDetail;
@@ -10,6 +11,7 @@ export default function ArticleView({articleDetail}: ArticleDetailProp) {
   return (
     <>
       <h1>{articleDetail.title}</h1>
+      <ReactMarkdown>{articleDetail.content}</ReactMarkdown>
       <p>{articleDetail.content}</p>
       <h2>
         <Link href="/">Back to home</Link>
