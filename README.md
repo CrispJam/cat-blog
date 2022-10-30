@@ -22,22 +22,57 @@ there seems to be no way to retrieve all uploaded images, so I'll save all of th
 ```
 
 ## Encountered issues
-1. fast refresh not working in NextJs
+### fast refresh not working in NextJs
+fix: https://stackoverflow.com/a/70947588/11034352
 
-    fix: https://stackoverflow.com/a/70947588/11034352
+### component mounts twice
+fix: turn off react strict mode
 
-2. component mounts twice
+https://stackoverflow.com/a/71835700/11034352
 
-    fix: turn off react strict mode
-    https://stackoverflow.com/a/71835700/11034352
+### 'React' refers to a UMD global, but the current file is a module
+fix: https://stackoverflow.com/a/65539274/11034352
 
-3. 'React' refers to a UMD global, but the current file is a module
+### Binding element 'params' implicitly has an 'any' type.
+fix: https://github.com/vercel/next.js/discussion16522#discussioncomment-130070
 
-    fix: https://stackoverflow.com/a/65539274/11034352
+### Pre-rendered pages not allowed to render images
+When using server-side rendering (SSR) or static-site generation (SSG) for pages that use images, there is an issue with displaying them.
 
-4. Binding element 'params' implicitly has an 'any' type.
+The images are retrieved from the backend by the following endpoint
+```
+https://fullstack.exercise.applifting.cz/images/<img_id>
+```
+However, this url cannot be passed directly into the `src` of an `<img>` tag because the endpoint requires API_KEY in the request's header for identificating the tenant.
 
-    fix: https://github.com/vercel/next.js/discussions/16522#discussioncomment-130070
+This means it is necessary to first get the image, turn it into a blob, retrieve the url to this blob and then use the url as `src` in the `<img>` tag.
+
+This works fine, when the fetching (calling the API) is done on at client's side. The resulting url looks like this:
+```
+"blob:http://localhost:3000/228edeea-ceb9-4e4e-bb95-d2d5138d0718"
+```
+
+However, when using SSG or SSR, the blob is created within the NextJS backend server and looks like this:
+```
+blob:nodedata:1fb79cfe-0a3b-4c90-8ff3-3665f2162721
+```
+When trying to use such a url as `src` in the `<img` tag, the browser throws the following error:
+```
+Not allowed to load local resource: blob:nodedata:ccd32068-cb28-4c6a-81a8-981bc385b9c2
+```
+It might be possible to bypass this somehow, but that doesn't seem like a good solution.
+
+For now, the **best possible solution** is probably to not use SSR or SSG for pages that need to fetch images.
+
+Note for **potential backend** implementation:
+1. Since API_KEY is not secret anyway, it might be best to expose downloading images without this header requirement. This might be possible like so:
+    ```
+    https://fullstack.exercise.applifting.cz/<user_name>/images/<img_id>
+    ```
+2. This way, the endpoint can be used directly in the `<img>` tag without the need to download the image beforehand.
+
+
+
 
 ## Relevant links
 
