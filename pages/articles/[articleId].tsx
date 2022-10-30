@@ -1,19 +1,23 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getArticleDetail, getArticleIds, getImageURL } from '../../lib/api';
-import { ArticleDetail } from '../../lib/types';
+import { getArticleData } from '../../lib/api';
 import ReactMarkdown from 'react-markdown';
-import { ParsedUrlQuery } from 'querystring';
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import useSWR from 'swr';
 
 export default function ArticleView() {
   const router = useRouter();
   const { articleId } = router.query;
-  console.log(articleId);
+  const { data, error } = useSWR(articleId, getArticleData)
+
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+
   return (
     <>
-      <h1>Article</h1>
+      <h1>{data.title}</h1>
+      <Image alt={data.title} src={data.imageURL} width="200" height="200"/>
+      <ReactMarkdown>{data.content}</ReactMarkdown>
       <h2>
         <Link href="/article-list">Back to article list</Link>
       </h2>

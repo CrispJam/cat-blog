@@ -18,5 +18,9 @@ export interface Comment {
 
 export interface ArticleDetail extends Article {
   content: string;
-  comments: Array<Comment>
+  comments: Array<Comment>;
+}
+
+export interface ArticleData extends ArticleDetail {
+  imageURL: string;
 }
