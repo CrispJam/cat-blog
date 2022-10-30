@@ -19,28 +19,13 @@ export default function ArticleList({articles}: ArticleListProp) {
       setImgSrc(imgURL);
     }
     setupImage();
-    // const axiosInstance = axios.create({
-    //   baseURL: 'https://fullstack.exercise.applifting.cz',
-    //   headers: { 'X-API-KEY': '950a7a91-9435-4179-b89f-3944c2f128f8' }
-    // });
-    // const getImage = async () => {
-    //   const response = await axiosInstance.get('/images/e7ae6fa9-c22e-497e-b659-d20e50af978f', {responseType: 'blob'});
-    //   const myBlob = new Blob([response.data]);
-    //   const imgURL = URL.createObjectURL(myBlob);
-    //   console.log(imgURL)
-    //   setImgSrc(imgURL);
-    //   // console.log(response.data);
-    //   //console.log(Buffer.from(response.data).toString('base64'));
-    //   // setImgSrc(`data:image/jpeg;base64,${Buffer.from(response.data).toString('base64')}`);
-    // }
-    // getImage();
   }, [])
 
   const articleComponents = articles.map(article =>
     <div key={article.title}>
       <h2 >{article.title}</h2>
       <p>{article.perex}</p>
-      <Link href={`/articles/${article.articleId}`}>Read more</Link>
+      <Link href={`/articles/${encodeURIComponent(article.articleId)}`}>Read more</Link>
     </div>
   )
   return (
