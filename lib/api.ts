@@ -21,3 +21,9 @@ export async function getArticleDetail(articleId: string): Promise<ArticleDetail
   const response = await axiosInstance.get(`/articles/${articleId}`);
   return response.data;
 }
+
+export const getImageURL = async (imageId: string) => {
+  const response = await axiosInstance.get(`/images/${imageId}`, {responseType: 'blob'});
+  const imageBlob = new Blob([response.data]);
+  return URL.createObjectURL(imageBlob);
+}
