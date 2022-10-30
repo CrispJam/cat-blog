@@ -19,7 +19,7 @@ export default function ArticleView() {
       <Image alt={data.title} src={data.imageURL} width="200" height="200"/>
       <ReactMarkdown>{data.content}</ReactMarkdown>
       <h2>
-        <Link href="/article-list">Back to article list</Link>
+        <Link href="/articles">Back to article list</Link>
       </h2>
     </>
   );
