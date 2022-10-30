@@ -1,10 +1,14 @@
-export interface Article {
+export interface BaseArticle {
   articleId: string;
   title: string;
   perex: string;
   imageId: string;
   createdAt: string;
   lastUpdatedAt: string;
+}
+
+export interface Article extends BaseArticle {
+  imageURL: string;
 }
 
 export interface Comment {
@@ -19,8 +23,4 @@ export interface Comment {
 export interface ArticleDetail extends Article {
   content: string;
   comments: Array<Comment>;
-}
-
-export interface ArticleData extends ArticleDetail {
-  imageURL: string;
 }

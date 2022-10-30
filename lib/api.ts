@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Article, ArticleData, ArticleDetail } from "./types";
+import { Article, ArticleDetail, BaseArticle } from "./types";
 
 const axiosInstance = axios.create({
   baseURL: 'https://fullstack.exercise.applifting.cz',
@@ -8,7 +8,12 @@ const axiosInstance = axios.create({
 
 export async function getArticles(): Promise<Array<Article>> {
   const response = await axiosInstance.get('/articles');
-  return response.data.items;
+  const baseArticles: Array<BaseArticle> = response.data.items;
+  const articles = await Promise.all(baseArticles.map(async baseArticle => {
+    const imageURL = await getImageURL(baseArticle.imageId);
+    return { ...baseArticle, imageURL };
+  }));
+  return articles;
 }
 
 export async function getArticleIds(): Promise<Array<string>> {
@@ -17,11 +22,6 @@ export async function getArticleIds(): Promise<Array<string>> {
   return articles.map(article => article.articleId);
 }
 
-export async function getArticleDetail(articleId: string): Promise<ArticleDetail> {
-  const response = await axiosInstance.get(`/articles/${articleId}`);
-  const articleDetail: ArticleDetail = response.data;  
-  return response.data;
-}
 
 export const getImageURL = async (imageId: string): Promise<string> => {
   const response = await axiosInstance.get(`/images/${imageId}`, {responseType: 'blob'});
@@ -29,8 +29,8 @@ export const getImageURL = async (imageId: string): Promise<string> => {
   return URL.createObjectURL(imageBlob);
 }
 
-export const getArticleData = async (articleId: string): Promise<ArticleData> => {
-  const articleDetail = await getArticleDetail(articleId);
-  const imageURL = await getImageURL(articleDetail.imageId);
-  return { ...articleDetail, imageURL };
+export async function getArticleDetail(articleId: string): Promise<ArticleDetail> {
+  const response = await axiosInstance.get(`/articles/${articleId}`);
+  const imageURL = await getImageURL(response.data.imageId)
+  return { ...response.data, imageURL }
 }

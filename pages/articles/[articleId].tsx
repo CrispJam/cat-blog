@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getArticleData } from '../../lib/api';
+import { getArticleDetail } from '../../lib/api';
 import ReactMarkdown from 'react-markdown';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
@@ -8,7 +8,9 @@ import useSWR from 'swr';
 export default function ArticleView() {
   const router = useRouter();
   const { articleId } = router.query;
-  const { data, error } = useSWR(articleId, getArticleData)
+  const { data, error } = useSWR(articleId, getArticleDetail)
+
+  console.log(data);
 
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>

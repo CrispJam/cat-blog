@@ -7,6 +7,7 @@ interface ArticleListProp {
 }
 
 export default function ArticleList({articles}: ArticleListProp) {
+  console.log(articles);
   const articleComponents = articles.map(article =>
     <div key={article.title}>
       <h2 >{article.title}</h2>
