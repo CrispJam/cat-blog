@@ -17,7 +17,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          <Link href="/article-list">Go to article list</Link>
+          <Link href="/articles">Go to article list</Link>
         </p>
       </main>
     </div>

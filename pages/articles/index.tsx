@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image";
-import { getArticles } from "../lib/api";
+import { getArticles } from "../../lib/api";
 import useSWR from 'swr';
 
 export default function ArticleList() {
