@@ -10,8 +10,6 @@ export default function ArticleView() {
   const { articleId } = router.query;
   const { data, error } = useSWR(articleId, getArticleDetail)
 
-  console.log(data);
-
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
 

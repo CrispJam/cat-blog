@@ -1,15 +1,16 @@
 import Link from "next/link"
 import Image from "next/image";
-import { Article } from "../lib/types";
 import { getArticles } from "../lib/api";
+import useSWR from 'swr';
 
-interface ArticleListProp {
-  articles: Array<Article>;
-}
+export default function ArticleList() {
+  // No need to pass the key string to getArticles
+  const { data, error } = useSWR('article-list', () => getArticles());
 
-export default function ArticleList({articles}: ArticleListProp) {
-  console.log(articles);
-  const articleComponents = articles.map(article =>
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+  
+  const articleComponents = data.map(article =>
     <div key={article.title}>
       <h2 >{article.title}</h2>
       <Image alt={article.title} src={article.imageURL} width="200" height="200" />
@@ -24,13 +25,4 @@ export default function ArticleList({articles}: ArticleListProp) {
       <h2><Link href="/">Go home</Link></h2>
     </>
   )
-}
-
-export async function getStaticProps() {
-  const articles = await getArticles();
-  return {
-    props: {
-      articles,
-    },
-  }
 }
