@@ -4,11 +4,10 @@ import { getArticles } from "../../lib/api";
 import useSWR from 'swr';
 import Navbar from '../../components/Navbar';
 import useToken from '../../lib/useToken';
+import { useContext } from "react";
+import { TokenContext } from "../../components/Layout";
 
 export default function ArticleList() {
-  const { token, setToken } = useToken();
-
-  console.log(token);
   // No need to pass the key string to getArticles
   const { data, error } = useSWR('article-list', () => getArticles());
   if (error) return <div>Failed to load</div>

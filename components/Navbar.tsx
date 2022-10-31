@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
-import useToken from "../lib/useToken";
+import { TokenContext } from "./Layout";
 
 export default function Navbar() {
-  const { setToken, token } = useToken();
-  const logout = () => {
-    setToken('');
-  }
+  const { token, logout } = useContext(TokenContext);
 
   const priviligedLinks = (
     <>

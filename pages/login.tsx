@@ -1,15 +1,13 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { login } from "../lib/api";
-import useToken from "../lib/useToken";
-
-// taken from: https://tailwindui.com/components/application-ui/forms/sign-in-forms
+import { TokenContext } from '../components/Layout';
 
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { setToken } = useToken();
+  const { setToken } = useContext(TokenContext);
   const router = useRouter();
   
   const handleSubmit = async (e: React.FormEvent) => {
@@ -19,12 +17,12 @@ export default function Login() {
       const data = await login(credentials);
       setToken(data.access_token);
       router.push('/articles');
-      console.log(data.access_token);
     } catch (error) {
       console.log(error);
     }
   }
-
+  
+  // taken from: https://tailwindui.com/components/application-ui/forms/sign-in-forms
   return (
     <div className="bg-base-100 flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="m-5 bg-base-100 w-full max-w-md space-y-8 shadow-xl">
