@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Article, ArticleDetail, BaseArticle } from "./types";
+import { Article, ArticleDetail, BaseArticle, Credentials } from "./types";
 
 const axiosInstance = axios.create({
   baseURL: 'https://fullstack.exercise.applifting.cz',
@@ -33,4 +33,10 @@ export async function getArticleDetail(articleId: string): Promise<ArticleDetail
   const response = await axiosInstance.get(`/articles/${articleId}`);
   const imageURL = await getImageURL(response.data.imageId)
   return { ...response.data, imageURL }
+}
+
+export async function login(credentials: Credentials) {
+  const payload = JSON.stringify(credentials);
+  const response = await axiosInstance.post('/login', payload,{headers: { 'Content-Type': 'application/json', 'X-API-KEY': '950a7a91-9435-4179-b89f-3944c2f128f8' }});
+  return response.data;
 }

@@ -24,3 +24,8 @@ export interface ArticleDetail extends Article {
   content: string;
   comments: Array<Comment>;
 }
+
+export interface Credentials {
+  username: string;
+  password: string;
+}
