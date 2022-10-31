@@ -11,7 +11,7 @@ export default function Navbar() {
         <Link href="/" className="btn btn-ghost normal-case text-xl">About</Link>
       </div>
       <div className="flex-none">
-        <Link href="/articles" className="btn btn-ghost normal-case text-xl">Log in</Link>
+        <Link href="/login" className="btn btn-ghost normal-case text-xl">Log in</Link>
       </div>
     </div>
   )
