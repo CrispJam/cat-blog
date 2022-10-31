@@ -20,6 +20,10 @@ export default function ArticleList() {
   )
   return (
     <>
+      <div>
+        <button className="btn btn-primary">Button</button>
+      </div>
+
       <h1 className="text-3xl font-bold underline">Recent articles</h1>
       {articleComponents}
       <h2><Link href="/">Go home</Link></h2>
