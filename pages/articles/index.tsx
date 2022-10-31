@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from "next/image";
 import { getArticles } from "../../lib/api";
 import useSWR from 'swr';
+import Navbar from '../../components/Navbar';
 
 export default function ArticleList() {
   // No need to pass the key string to getArticles
@@ -20,10 +21,7 @@ export default function ArticleList() {
   )
   return (
     <>
-      <div>
-        <button className="btn btn-primary">Button</button>
-      </div>
-
+      <Navbar />
       <h1 className="text-3xl font-bold underline">Recent articles</h1>
       {articleComponents}
       <h2><Link href="/">Go home</Link></h2>

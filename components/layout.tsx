@@ -1,9 +1,12 @@
 import React from "react";
 
-export default function Layout({ children }) {
+interface Props {
+  children: React.ReactNode
+}
+
+export default function Layout({ children }: Props) {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">HEADER</h1>
       {children}
     </div>
   )
