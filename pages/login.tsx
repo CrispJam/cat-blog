@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { useState } from "react";
 import { login } from "../lib/api";
@@ -9,6 +10,7 @@ export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { setToken } = useToken();
+  const router = useRouter();
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,6 +18,7 @@ export default function Login() {
     try {
       const data = await login(credentials);
       setToken(data.access_token);
+      router.push('/articles');
       console.log(data.access_token);
     } catch (error) {
       console.log(error);
