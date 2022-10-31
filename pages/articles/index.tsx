@@ -23,7 +23,7 @@ export default function ArticleList() {
   )
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Recent articles</h1>
+      <h1 className="text-3xl font-bold">Recent articles</h1>
       {articleComponents}
       <h2><Link href="/">Go home</Link></h2>
     </>

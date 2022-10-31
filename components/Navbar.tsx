@@ -11,7 +11,7 @@ export default function Navbar() {
         <Link href="/articles" className="btn btn-ghost normal-case text-l">My Articles</Link>
       </div>
       <div>
-        <Link href="/articles" className="btn btn-ghost normal-case text-l">Create Article</Link>
+        <Link href="/articles/create" className="btn btn-ghost normal-case text-l">Create Article</Link>
       </div>
       <div>
         <button
