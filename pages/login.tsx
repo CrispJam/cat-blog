@@ -7,7 +7,7 @@ export default function Login() {
     <div className="bg-base-200 flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="m-5 bg-base-100 w-full max-w-md space-y-8 shadow-xl">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-content">
             Sign in to your account
           </h2>
         </div>
