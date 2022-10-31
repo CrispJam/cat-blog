@@ -71,7 +71,12 @@ Note for **potential backend** implementation:
     ```
 2. This way, the endpoint can be used directly in the `<img>` tag without the need to download the image beforehand.
 
-
+### Where to store the auth_token
+Security discussion: https://stackoverflow.com/q/44133536/11034352
+1. [Web storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)
+    1. Session storage (deleted upon closing browser or tab)
+    2. Local storage (persisted upon closing browser or tab)
+2. Client side cookies
 
 
 ## Relevant links
