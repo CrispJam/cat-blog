@@ -8,11 +8,7 @@ import useToken from "../lib/useToken";
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { token, setToken } = useToken();
-
-  console.log(token);
-
-  // if (error) return <div>Failed to load</div>
+  const { setToken } = useToken();
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +16,7 @@ export default function Login() {
     try {
       const data = await login(credentials);
       setToken(data.access_token);
-      // console.log(data.access_token);
+      console.log(data.access_token);
     } catch (error) {
       console.log(error);
     }
