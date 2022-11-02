@@ -7,27 +7,23 @@ export default function Create() {
 
 
   return (
-    <div className="flex">
-      <div className="flex-1 border-4">
+    <div className="flex flex-wrap">
+      <div className="flex-1 border-4 m-5 p-5">
         Editor
-        <div>
-          <input
-            onChange={e => setTitle(e.target.value)}
-            value={title}
-            placeholder="My first article"
-            className="input input-primary"
-          />
-        </div>
-        <div>
-          <textarea
-            onChange={e => setContent(e.target.value)}
-            value={content}
-            placeholder="Article content written in Markdown"
-            className="textarea textarea-primary"
-          />
-        </div>
+        <input
+          onChange={e => setTitle(e.target.value)}
+          value={title}
+          placeholder="My first article"
+          className="input input-primary block min-w-full"
+        />
+        <textarea
+          onChange={e => setContent(e.target.value)}
+          value={content}
+          placeholder="Article content written in Markdown"
+          className="textarea textarea-primary block min-w-full"
+        />
       </div>
-      <div className="flex-1 border-4">
+      <div className="flex-1 border-4 m-5 p-5">
         Preview
         <div className="prose">
           <ReactMarkdown>{content}</ReactMarkdown>
