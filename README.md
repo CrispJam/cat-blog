@@ -78,6 +78,30 @@ Security discussion: https://stackoverflow.com/q/44133536/11034352
     2. Local storage (persisted upon closing browser or tab)
 2. Client side cookies
 
+### Markdown considerations
+The handling of markdown consists of two parts
+1. Rendering existing articles
+2. Allowing users to edit and create new articles with markdown
+
+It is important that the markdown renders **consistently** during creation and when viewing finished articles.
+
+There seem to be different options:
+1. Only use a rendering library
+    - Finished articles are simply rendered by this library
+    - During editing, there is a simple text area and a preview rendered by the library
+    - This lacks syntax higlighting (and/or) WYSIWYG options for inexperienced users
+    - https://github.com/markdown-it/markdown-it
+    - https://github.com/remarkjs/remark
+    - https://github.com/markedjs/marked
+2. Use a full-fledged WYSIWYG markdown editor
+    - Live editor for editing
+    - Readonly editor for displaying finished articles
+        - Might be less efficient than a simple rendering library
+    - https://milkdown.dev
+    - https://www.reddit.com/r/javascript/comments/nce8v1/askjs_best_javascript_markdown_wysiwyg_editors/
+
+Thing to also consider: html sanitation to avoid vulnerabilities
+
 
 ## Relevant links
 
