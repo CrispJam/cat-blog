@@ -10,7 +10,7 @@ export async function getArticles(): Promise<Array<Article>> {
   const response = await axiosInstance.get('/articles');
   const baseArticles: Array<BaseArticle> = response.data.items;
   const articles = await Promise.all(baseArticles.map(async baseArticle => {
-    const imageURL = await getImageURL(baseArticle.imageId);
+    const imageURL = baseArticle.imageId ? await getImageURL(baseArticle.imageId) : "/images/kitten.jpg";
     return { ...baseArticle, imageURL };
   }));
   return articles;
