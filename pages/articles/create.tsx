@@ -3,13 +3,16 @@ import ReactMarkdown from 'react-markdown';
 
 export default function Create() {
   const [title, setTitle] = useState('');
+  const [perex, setPerex] = useState('');
   const [content, setContent] = useState('');
 
+  const publish = async () => {
+    
+  }
 
   return (
     <div className="flex flex-wrap">
       <div className="flex-1 border-4 m-5 p-5">
-        Editor
         <input
           onChange={e => setTitle(e.target.value)}
           value={title}
@@ -17,41 +20,29 @@ export default function Create() {
           className="input input-primary block min-w-full"
         />
         <textarea
+          onChange={e => setPerex(e.target.value)}
+          value={perex}
+          placeholder="Article perex written in Markdown"
+          className="textarea textarea-primary block min-w-full"
+        />
+        <textarea
           onChange={e => setContent(e.target.value)}
           value={content}
           placeholder="Article content written in Markdown"
           className="textarea textarea-primary block min-w-full"
         />
+        <button
+          className="btn btn-primary"
+          onClick={() => publish()}
+        >
+          Publish
+        </button>
       </div>
       <div className="flex-1 border-4 m-5 p-5">
-        Preview
         <div className="prose">
           <ReactMarkdown>{content}</ReactMarkdown>
         </div>
       </div>
     </div>
   )
-
-/*   return (
-    <div>
-      <h1 className="text-3xl font-bold">Create Article</h1>
-      <div>
-        <input
-          onChange={e => setTitle(e.target.value)}
-          value={title}
-          placeholder="My first article"
-          className="input input-primary"
-        />
-      </div>
-      <textarea
-        onChange={e => setContent(e.target.value)}
-        value={content}
-        placeholder="Article content written in Markdown"
-        className="textarea textarea-primary"
-      />
-      <div className="prose">
-        <ReactMarkdown>{content}</ReactMarkdown>
-      </div>
-    </div>
-  ) */
 }
