@@ -93,6 +93,7 @@ There seem to be different options:
     - https://github.com/markdown-it/markdown-it
     - https://github.com/remarkjs/remark
     - https://github.com/markedjs/marked
+    - https://github.com/remarkjs/react-markdown
 2. Use a full-fledged WYSIWYG markdown editor
     - Live editor for editing
     - Readonly editor for displaying finished articles
