@@ -29,6 +29,13 @@ export const getImageURL = async (imageId: string): Promise<string> => {
   return URL.createObjectURL(imageBlob);
 }
 
+export const uploadImage = async (image: File, access_token: string) => {
+  const payload = new FormData();
+  payload.append('image', image);
+  const response = await axiosInstance.post('/images', payload, {headers: {'Content-Type': 'multipart/form-data', 'X-API-KEY': '950a7a91-9435-4179-b89f-3944c2f128f8', 'Authorization': access_token}})
+  return response.data;
+}
+
 export async function getArticleDetail(articleId: string): Promise<ArticleDetail> {
   const response = await axiosInstance.get(`/articles/${articleId}`);
   const imageURL = await getImageURL(response.data.imageId)
@@ -37,6 +44,6 @@ export async function getArticleDetail(articleId: string): Promise<ArticleDetail
 
 export async function login(credentials: Credentials) {
   const payload = JSON.stringify(credentials);
-  const response = await axiosInstance.post('/login', payload,{headers: { 'Content-Type': 'application/json', 'X-API-KEY': '950a7a91-9435-4179-b89f-3944c2f128f8' }});
+  const response = await axiosInstance.post('/login', payload, {headers: { 'Content-Type': 'application/json', 'X-API-KEY': '950a7a91-9435-4179-b89f-3944c2f128f8' }});
   return response.data;
 }
