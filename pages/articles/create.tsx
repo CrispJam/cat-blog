@@ -1,7 +1,8 @@
-import { ChangeEvent, useContext, useRef, useState } from "react"
+import { useRouter } from "next/router";
+import { useContext, useRef, useState } from "react"
 import ReactMarkdown from 'react-markdown';
 import { TokenContext } from "../../components/Layout";
-import { uploadImage } from "../../lib/api";
+import { publishArticle, uploadImage } from "../../lib/api";
 
 export default function Create() {
   const [title, setTitle] = useState('');
@@ -10,19 +11,24 @@ export default function Create() {
   const { token } = useContext(TokenContext);
 
   const imageInputRef = useRef(null);
+  const router = useRouter();
 
   const publish = async () => {
     try {
+      // TODO add validation:
+      // no empty title, perex, content, and image
       if (imageInputRef.current && imageInputRef.current.files[0]) {
         console.log("publishing...");
-        console.log(imageInputRef.current.files[0]);
-        const data = uploadImage(imageInputRef.current.files[0], token);
-
-        
-        console.log(data);
+        const imageReponse = await uploadImage(imageInputRef.current.files[0], token);
+        console.log(imageReponse);
+        const newArticle = {title, perex, content, imageId: imageReponse.imageId };
+        console.log(newArticle);
+        await publishArticle(newArticle, token);
+        router.push('/articles');
       }
-    } catch (error) {
 
+    } catch (error) {
+      console.log(error);
     }
   }
 

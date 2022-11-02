@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Article, ArticleDetail, BaseArticle, Credentials } from "./types";
+import { Article, ArticleDetail, BaseArticle, Credentials, ImageResponse, NewArticle } from "./types";
 
 const axiosInstance = axios.create({
   baseURL: 'https://fullstack.exercise.applifting.cz',
@@ -29,11 +29,17 @@ export const getImageURL = async (imageId: string): Promise<string> => {
   return URL.createObjectURL(imageBlob);
 }
 
-export const uploadImage = async (image: File, access_token: string) => {
+export const uploadImage = async (image: File, access_token: string): Promise<ImageResponse> => {
   const payload = new FormData();
   payload.append('image', image);
   const response = await axiosInstance.post('/images', payload, {headers: {'Content-Type': 'multipart/form-data', 'X-API-KEY': '950a7a91-9435-4179-b89f-3944c2f128f8', 'Authorization': access_token}})
-  return response.data;
+  // Supporting only a single image right now
+  return response.data[0];
+}
+
+export const publishArticle = async (article: NewArticle, access_token: string) => {
+  const payload = JSON.stringify(article);
+  await axiosInstance.post('/articles', payload, { headers: {'Content-Type': 'application/json', 'X-API-KEY': '950a7a91-9435-4179-b89f-3944c2f128f8', 'Authorization': access_token}})
 }
 
 export async function getArticleDetail(articleId: string): Promise<ArticleDetail> {

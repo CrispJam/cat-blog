@@ -1,3 +1,10 @@
+export interface NewArticle {
+  title: string;
+  perex: string;
+  content: string;
+  imageId: string;
+}
+
 export interface BaseArticle {
   articleId: string;
   title: string;
@@ -28,4 +35,9 @@ export interface ArticleDetail extends Article {
 export interface Credentials {
   username: string;
   password: string;
+}
+
+export interface ImageResponse {
+  imageId: string;
+  name: string;
 }
